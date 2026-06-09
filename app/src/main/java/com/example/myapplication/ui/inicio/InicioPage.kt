@@ -54,9 +54,16 @@ fun InicioPage(navController: NavController) {
                 contentColor = Color.White
             )
         ) { Text("Sign in") }
+
         Spacer(modifier = Modifier.height(20.dp))
 
         SocialAuthButton("Continue with Google",
+            R.drawable.google,
+            {})
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        SocialAuthButton("Continue with Facebook",
             R.drawable.google,
             {})
     }
