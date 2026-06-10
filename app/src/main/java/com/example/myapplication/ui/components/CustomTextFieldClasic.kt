@@ -34,7 +34,6 @@ fun CustomTextFieldClasic(
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
             text = label,
-            style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
             color = if (isError) Color.Red else Color.DarkGray,
             modifier = Modifier.padding(bottom = 6.dp) // Espacio entre el título y la caja
