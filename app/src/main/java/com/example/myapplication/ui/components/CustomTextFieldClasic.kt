@@ -55,7 +55,7 @@ fun CustomTextFieldClasic(
             shape = RoundedCornerShape(14.dp), // Bordes más redondeados y suaves
             colors = OutlinedTextFieldDefaults.colors(
                 // Colores en estado normal
-                focusedBorderColor = Color.LightGray.copy(alpha = 0.6f),
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
                 unfocusedBorderColor = Color.LightGray.copy(alpha = 0.6f),
                 focusedLabelColor = Color(0xFF0B766B),
                 unfocusedLabelColor = Color.Gray,

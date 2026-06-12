@@ -63,10 +63,6 @@ fun InicioPage(navController: NavController) {
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(20.dp),
-//                colors = ButtonDefaults.buttonColors(
-//                    containerColor = MaterialTheme.colorScheme.primary,
-//                    contentColor = Color.White
-//                )
             ) { Text("Sign in") }
             Spacer(modifier = Modifier.height(10.dp))
 

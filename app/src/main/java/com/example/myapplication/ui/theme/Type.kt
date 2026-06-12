@@ -47,7 +47,7 @@ val MiTipografia = Typography(
     titleLarge = TextStyle(
         fontFamily = GoogleSansFamily,
         fontWeight = FontWeight.Bold,
-        fontSize = 22.sp
+        fontSize = 32.sp
     ),
     bodySmall = TextStyle( //lo usa el label del input
         fontFamily = GoogleSansFamily,

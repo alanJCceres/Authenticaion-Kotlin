@@ -13,17 +13,26 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.Alignment
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.example.myapplication.R
+
 
 @Composable
 fun LoginPage(
     navController:NavController,
-    // Inyectamos el ViewModel de forma automática
     viewModel: LoginViewModel = viewModel()
 ) {
     var email by remember { mutableStateOf("") }
-    val formaRedondeada = RoundedCornerShape(16.dp)
+    var password by remember {mutableStateOf("")}
+    var isChecked by remember { mutableStateOf(false) }
     // "Colectamos" el estado del ViewModel y lo convertimos en un State de Compose
     val state by viewModel.uiState.collectAsState()
 
@@ -36,40 +45,181 @@ fun LoginPage(
 
     Column(
         modifier = Modifier
-            .padding(16.dp)
-            .shadow(elevation = 8.dp, shape = formaRedondeada)
-            .background(Color.White, shape = formaRedondeada)
-            .border(width = 2.dp, color = Color(0xFF0B766B), shape = formaRedondeada)
-            .clip(formaRedondeada),
+            .background(Color.White)
+            .padding(20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // El TextField ahora lee del estado del ViewModel
-        CustomTextField(
-            value = state.textoIngresado,
-            onValueChange = { nuevoTexto ->
-                viewModel.onTextoCambiado(nuevoTexto)
-            },
-            label = "Nombre completo",
-            placeholder = "Ej. Juan Pérez",
-            isError = state.mostrarError != null,
-            errorMessage = state.mostrarError
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        CustomTextFieldClasic(
-            value = email,
-            onValueChange = {
-                email = it
-            },
-            label = "Correo electrónico",
-            placeholder = "Ej. Juan Pérez",
-        )
+        //TITULO
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Welcome Back",
+                style = MaterialTheme.typography.titleLarge)
+            Text("Sign to your Sudapass account",
+                color = Color.Gray)
+        }
+        Spacer(modifier = Modifier.height(26.dp))
+        //FORMULARIO
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CustomTextFieldClasic(
+                value = state.textoIngresado,
+                onValueChange = { nuevoTexto ->
+                    viewModel.onTextoCambiado(nuevoTexto)
+                },
+                label = "Email",
+                placeholder = "user@gmail.com",
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            CustomTextFieldClasic(
+                value = password,
+                onValueChange = {
+                    password = it
+                },
+                label = "Password",
+                placeholder = "Enter your password",
+                isError = state.mostrarError != null,
+                errorMessage = state.mostrarError
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(), // Obligatorio para que se expanda y empuje los extremos
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row(
+                    modifier = Modifier
+                        .clickable { isChecked = !isChecked }, //hace que todo el reglon sea clickeable
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Checkbox(
+                        checked = isChecked,
+                        onCheckedChange = { isChecked = it }
+                    )
+                    Text(text = "Remember me")
+                }
+                Text("Forgot password?",
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.clickable {
+                        navController.navigate("login")
+                    })
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = RoundedCornerShape(20.dp),
+                onClick = { viewModel.onLoginClick() }) {
+                Text("Sign in")
+            }
 
-        Spacer(modifier = Modifier.height(16.dp))
+            //LINEA SEPARADORA
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 24.dp),
+                verticalAlignment = Alignment.CenterVertically // Centra las líneas con el texto verticalmente
+            ) {
+                // 1. Línea izquierda
+                HorizontalDivider(
+                    modifier = Modifier.weight(1f), // Se expande para ocupar el lado izquierdo
+                    thickness = 1.dp,
+                    color = Color.Gray.copy(alpha = 0.5f) // Color tenue para la línea
+                )
 
-        // El botón solo invoca la función de validación del ViewModel
-        Button(onClick = { viewModel.onLoginClick() }) {
-            Text("Verificar y Continuar")
+                Text(
+                    text = "o continúa con",
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Gray
+                )
+                // 3. Línea derecha
+                HorizontalDivider(
+                    modifier = Modifier.weight(1f), // Se expande para ocupar el lado derecho
+                    thickness = 1.dp,
+                    color = Color.Gray.copy(alpha = 0.5f)
+                )
+            }
+            //ICONOS DE REDES SOCIALES
+            Row(
+                modifier = Modifier
+                    .padding(50.dp,0.dp)
+                    .fillMaxWidth(), // Crucial: obliga al Row a expandirse de extremo a extremo
+
+                horizontalArrangement = Arrangement.SpaceBetween, // Distribuye el espacio entre elementos
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                OutlinedIconButton(
+                    onClick = { /* Tu acción aquí */ },
+                    modifier = Modifier
+                        .size(80.dp) // Define el tamaño total del botón redondo
+                        .padding(4.dp),
+                    shape = CircleShape, // Fuerza a que el botón sea completamente redondo
+                    border = BorderStroke(1.dp, Color.LightGray) // Define la línea gris del borde
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.google),
+                        contentDescription = "Google",
+                        modifier = Modifier.size(34.dp) // Tamaño del icono dentro del botón
+                    )
+                }
+                OutlinedIconButton(
+                    onClick = { /* Tu acción aquí */ },
+                    modifier = Modifier
+                        .size(80.dp) // Define el tamaño total del botón redondo
+                        .padding(4.dp),
+                    shape = CircleShape, // Fuerza a que el botón sea completamente redondo
+                    border = BorderStroke(1.dp, Color.LightGray) // Define la línea gris del borde
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.apple),
+                        contentDescription = "Apple",
+                        modifier = Modifier.size(34.dp) // Tamaño del icono dentro del botón
+                    )
+                }
+                OutlinedIconButton(
+                    onClick = { /* Tu acción aquí */ },
+                    modifier = Modifier
+                        .size(80.dp)
+                        .padding(4.dp),
+                    shape = CircleShape,
+                    border = BorderStroke(1.dp, Color.LightGray)
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.facebook),
+                        contentDescription = "Facebook",
+                        modifier = Modifier.size(34.dp)
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            //PIE DE PAGINA REGISTRARSE
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text("Don't have a account?",
+                    color = Color.Gray,
+                    style = MaterialTheme.typography.bodySmall,)
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Text("Sign up",
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.clickable {
+                        // Tu código para ir a la otra pantalla aquí
+                        navController.navigate("login")
+                    })
+            }
         }
     }
 }
