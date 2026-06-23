@@ -58,7 +58,7 @@ fun InicioPage(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
-                onClick = {navController.navigate("login")},
+                onClick = {navController.navigate("mainlogin")},
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
@@ -99,7 +99,7 @@ fun InicioPage(navController: NavController) {
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.clickable {
                     // Tu código para ir a la otra pantalla aquí
-                    navController.navigate("login")
+                    navController.navigate("mainlogin")
                 })
         }
 

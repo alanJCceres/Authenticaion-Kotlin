@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.ui.home.Home
 import com.example.myapplication.ui.inicio.InicioPage
 import com.example.myapplication.ui.login.LoginPage
+import com.example.myapplication.ui.login.MainLoginScreen
 
 @Composable
 fun AppNavigation() {
@@ -17,8 +18,8 @@ fun AppNavigation() {
         composable("inicio"){
             InicioPage(navController = navController)
         }
-        composable("login") {
-            LoginPage(navController = navController)
+        composable("mainlogin") {
+            MainLoginScreen(navController = navController)
         }
         composable("home") {
             Home()

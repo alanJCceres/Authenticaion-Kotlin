@@ -3,19 +3,14 @@ package com.example.myapplication.ui.login
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.*
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.myapplication.ui.components.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.draw.shadow
 import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Color
-import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.shape.CircleShape
@@ -27,7 +22,7 @@ import com.example.myapplication.R
 
 @Composable
 fun LoginPage(
-    navController:NavController,
+    onLoginSuccess: () -> Unit,
     viewModel: LoginViewModel = viewModel()
 ) {
     var email by remember { mutableStateOf("") }
@@ -39,28 +34,17 @@ fun LoginPage(
     // Efecto lanzado cuando el estado de navegación cambia a true
     LaunchedEffect(Unit) {
         viewModel.navigationEvent.collect{ ruta ->
-            navController.navigate("home")
+            onLoginSuccess()
         }
     }
 
     Column(
         modifier = Modifier
-            .background(Color.White)
-            .padding(20.dp),
+            .background(Color.White),
+
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        //TITULO
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("Welcome Back",
-                style = MaterialTheme.typography.titleLarge)
-            Text("Sign to your Sudapass account",
-                color = Color.Gray)
-        }
-        Spacer(modifier = Modifier.height(26.dp))
         //FORMULARIO
         Column(
             verticalArrangement = Arrangement.Center,
@@ -106,7 +90,7 @@ fun LoginPage(
                 Text("Forgot password?",
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.clickable {
-                        navController.navigate("login")
+                        onLoginSuccess()
                     })
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -217,7 +201,7 @@ fun LoginPage(
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.clickable {
                         // Tu código para ir a la otra pantalla aquí
-                        navController.navigate("login")
+                        onLoginSuccess()
                     })
             }
         }
