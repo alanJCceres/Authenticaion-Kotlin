@@ -8,6 +8,7 @@ import com.example.myapplication.ui.home.Home
 import com.example.myapplication.ui.inicio.InicioPage
 import com.example.myapplication.ui.login.LoginPage
 import com.example.myapplication.ui.login.MainLoginScreen
+import com.example.myapplication.ui.verifyNumber.VerifyNumberScreen
 
 @Composable
 fun AppNavigation() {
@@ -23,6 +24,9 @@ fun AppNavigation() {
         }
         composable("home") {
             Home()
+        }
+        composable("verifyNumber"){
+            VerifyNumberScreen()
         }
     }
 }

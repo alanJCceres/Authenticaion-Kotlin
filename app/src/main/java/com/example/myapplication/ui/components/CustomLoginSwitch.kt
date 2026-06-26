@@ -28,7 +28,7 @@ fun CustomLoginSwitch(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(50.dp)
+            .height(55.dp)
             .clip(CircleShape)
             .background(Color.LightGray.copy(alpha = 0.5f))
             .padding(4.dp), // Padding interno para que los botones no toquen el borde
@@ -44,7 +44,7 @@ fun CustomLoginSwitch(
 
         // Botón Teléfono
         SwitchButton(
-            text = "Teléfono",
+            text = "Phone Number",
             isSelected = selectedOption == LoginType.PHONE,
             onClick = { onOptionSelected(LoginType.PHONE) },
             modifier = Modifier.weight(1f)

@@ -57,6 +57,8 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose) //para navegacion
+    implementation(libs.androidx.lifecycle.viewmodel.compose) // para view model
+    implementation(libs.androidx.material.icons.extended) // para iconos
+
 }

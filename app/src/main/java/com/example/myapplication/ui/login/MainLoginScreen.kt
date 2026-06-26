@@ -69,7 +69,10 @@ fun MainLoginScreen(
                     })
                 }
                 LoginType.PHONE -> {
-                    LoginPhoneScreen()
+                    LoginPhoneScreen(onLoginSuccess = {
+                        // Aquí se decide a dónde redirigir desde el padre
+                        navController.navigate("verifyNumber")
+                    })
                 }
             }
         }
