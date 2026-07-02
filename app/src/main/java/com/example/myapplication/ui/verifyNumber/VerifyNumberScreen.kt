@@ -31,7 +31,7 @@ import com.example.myapplication.ui.components.OtpInputField
 fun VerifyNumberScreen() {
     Column(
         modifier = Modifier
-            .systemBarsPadding() //hace que se ajuste la pantalla para respetar los iconos del top y del bottom
+            .systemBarsPadding() // <-- Empuja el contenido hacia adentro respetando el status bar y navigation bar
             .padding(20.dp,20.dp)
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
