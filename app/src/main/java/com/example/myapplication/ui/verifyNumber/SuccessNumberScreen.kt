@@ -1,7 +1,6 @@
 package com.example.myapplication.ui.verifyNumber
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -26,16 +25,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.myapplication.R
-import com.example.myapplication.ui.components.OtpInputField
 
 @Composable
-fun VerifyNumberScreen(
-    navController:NavController,
-) {
+fun SuccessNumberScreen( navController: NavController) {
     Column(
         modifier = Modifier
             .systemBarsPadding() // <-- Empuja el contenido hacia adentro respetando el status bar y navigation bar
-            .padding(20.dp,20.dp)
+            .padding(20.dp,50.dp)
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -52,7 +48,7 @@ fun VerifyNumberScreen(
                 verticalArrangement = Arrangement.Center
             ){
                 Image(
-                    painter = painterResource(R.drawable.phone_password),
+                    painter = painterResource(R.drawable.success),
                     contentDescription = "Logo imagen",
                     modifier = Modifier
                         .width(200.dp)
@@ -65,32 +61,11 @@ fun VerifyNumberScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(text="Verify your number",style = MaterialTheme.typography.titleLarge)
+                Text(text="Phone Verified !",style = MaterialTheme.typography.titleLarge)
                 Spacer(modifier = Modifier.height(10.dp))
-                Text(text="We've sent a 6-digit code to",color = Color.Gray)
-                Text(text="+591 75971702")
+                Text(text="Your phone has been",color = Color.Gray)
+                Text(text="Verified successfully",color = Color.Gray)
             }
-            Spacer(modifier = Modifier.height(26.dp))
-            OtpInputField(
-                otpLength = 6, // Puedes cambiar la cantidad de dígitos aquí
-                onOtpComplete = { codigoFinal ->
-                    // Aquí ejecutas la lógica para verificar el código con tu backend
-                    println("Código ingresado: $codigoFinal")
-                }
-            )
-            Spacer(modifier = Modifier.height(26.dp))
-            Text(
-                text = "Didn't receive the code ?",
-                modifier = Modifier.padding(horizontal = 16.dp),
-                style = MaterialTheme.typography.bodyMedium,
-                color = Color.Gray
-            )
-            Text("Resend code",
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.clickable {
-                    // Tu código para ir a la otra pantalla aquí
-
-                })
         }
         Button(
             modifier = Modifier
@@ -101,7 +76,7 @@ fun VerifyNumberScreen(
                 navController.navigate("validateNumber")
             }
         ) {
-            Text("Verify Code")
+            Text("Continue")
         }
     }
 }
