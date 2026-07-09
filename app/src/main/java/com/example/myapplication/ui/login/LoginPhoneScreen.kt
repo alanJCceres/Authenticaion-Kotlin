@@ -43,6 +43,7 @@ import com.example.myapplication.ui.components.PhoneNumberInput
 @Composable
 fun LoginPhoneScreen(
     onLoginSuccess: () -> Unit,
+    onSignUp: () -> Unit,
     viewModel: LoginPhoneViewModel = viewModel()
 ) {
     var phoneNumber by remember { mutableStateOf("") }
@@ -221,8 +222,7 @@ fun LoginPhoneScreen(
                 Text("Sign up",
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.clickable {
-                        // Tu código para ir a la otra pantalla aquí
-                        onLoginSuccess()
+                        onSignUp()
                     })
             }
         }

@@ -66,12 +66,18 @@ fun MainLoginScreen(
                     LoginPage(onLoginSuccess = {
                         // Aquí se decide a dónde redirigir desde el padre
                         navController.navigate("home")
+                    },
+                    onSignUp = {
+                        navController.navigate("registerUser")
                     })
                 }
                 LoginType.PHONE -> {
                     LoginPhoneScreen(onLoginSuccess = {
                         // Aquí se decide a dónde redirigir desde el padre
                         navController.navigate("verifyNumber")
+                    },
+                    onSignUp = {
+                        navController.navigate("registerUser")
                     })
                 }
             }

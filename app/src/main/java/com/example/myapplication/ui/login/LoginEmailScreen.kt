@@ -23,6 +23,7 @@ import com.example.myapplication.R
 @Composable
 fun LoginPage(
     onLoginSuccess: () -> Unit,
+    onSignUp: () -> Unit,
     viewModel: LoginViewModel = viewModel()
 ) {
     var email by remember { mutableStateOf("") }
@@ -200,8 +201,7 @@ fun LoginPage(
                 Text("Sign up",
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.clickable {
-                        // Tu código para ir a la otra pantalla aquí
-                        onLoginSuccess()
+                        onSignUp()
                     })
             }
         }

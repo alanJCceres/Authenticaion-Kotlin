@@ -73,7 +73,7 @@ fun SuccessNumberScreen( navController: NavController) {
                 .height(50.dp),
             shape = RoundedCornerShape(20.dp),
             onClick = {
-                navController.navigate("validateNumber")
+                navController.navigate("registerUser")
             }
         ) {
             Text("Continue")
