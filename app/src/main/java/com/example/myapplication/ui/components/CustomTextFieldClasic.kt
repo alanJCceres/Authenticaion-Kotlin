@@ -34,7 +34,6 @@ fun CustomTextFieldClasic(
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
             text = label,
-            style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
             color = if (isError) Color.Red else Color.DarkGray,
             modifier = Modifier.padding(bottom = 6.dp) // Espacio entre el título y la caja
@@ -56,7 +55,7 @@ fun CustomTextFieldClasic(
             shape = RoundedCornerShape(14.dp), // Bordes más redondeados y suaves
             colors = OutlinedTextFieldDefaults.colors(
                 // Colores en estado normal
-                focusedBorderColor = Color.LightGray.copy(alpha = 0.6f),
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
                 unfocusedBorderColor = Color.LightGray.copy(alpha = 0.6f),
                 focusedLabelColor = Color(0xFF0B766B),
                 unfocusedLabelColor = Color.Gray,

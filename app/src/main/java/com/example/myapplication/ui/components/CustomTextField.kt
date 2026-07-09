@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun CustomTextField(
@@ -48,9 +49,9 @@ fun CustomTextField(
             shape = RoundedCornerShape(14.dp), // Bordes más redondeados y suaves
             colors = OutlinedTextFieldDefaults.colors(
                 // Colores en estado normal
-                focusedBorderColor = Color(0xFF0B766B), // Un color de enfoque personalizado (ej. Teal oscuro)
+                focusedBorderColor = MaterialTheme.colorScheme.primary, // Un color de enfoque personalizado (ej. Teal oscuro)
                 unfocusedBorderColor = Color.LightGray.copy(alpha = 0.6f),
-                focusedLabelColor = Color(0xFF0B766B),
+                focusedLabelColor = MaterialTheme.colorScheme.primary,
                 unfocusedLabelColor = Color.Gray,
                 unfocusedContainerColor = Color.White, //Fondo blanco sin foco
                 focusedContainerColor = Color.White, //fondo blanco cuando se haga foco

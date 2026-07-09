@@ -7,6 +7,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.ui.home.Home
 import com.example.myapplication.ui.inicio.InicioPage
 import com.example.myapplication.ui.login.LoginPage
+import com.example.myapplication.ui.login.MainLoginScreen
+import com.example.myapplication.ui.registerUser.RegisterUser
+import com.example.myapplication.ui.verifyNumber.SuccessNumberScreen
+import com.example.myapplication.ui.verifyNumber.ValidateNumberScreen
+import com.example.myapplication.ui.verifyNumber.VerifyNumberScreen
 
 @Composable
 fun AppNavigation() {
@@ -17,11 +22,24 @@ fun AppNavigation() {
         composable("inicio"){
             InicioPage(navController = navController)
         }
-        composable("login") {
-            LoginPage(navController = navController)
+        composable("mainlogin") {
+            MainLoginScreen(navController = navController)
         }
         composable("home") {
             Home()
         }
+        composable("verifyNumber"){
+            VerifyNumberScreen(navController = navController)
+        }
+        composable("validateNumber"){
+            ValidateNumberScreen(navController = navController)
+        }
+        composable("successValidateNumber"){
+            SuccessNumberScreen(navController = navController)
+        }
+        composable("registerUser"){
+            RegisterUser(navController = navController)
+        }
+
     }
 }

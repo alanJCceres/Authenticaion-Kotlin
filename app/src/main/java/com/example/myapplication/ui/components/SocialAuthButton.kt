@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,7 +27,7 @@ fun SocialAuthButton(
     OutlinedButton(
         onClick = onClick ,
         modifier = Modifier.fillMaxWidth()
-        .fillMaxHeight(0.23f),
+            .height(50.dp),
         shape = RoundedCornerShape(20.dp),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.Transparent,
